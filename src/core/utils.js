@@ -7,6 +7,37 @@ export const lerp = (a, b, t) => a + (b - a) * t;
 export const damp = (current, target, k, dt) =>
   lerp(current, target, 1 - Math.exp(-k * dt));
 
+export const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+export const easeOutBack = (t) => {
+  const c1 = 1.70158;
+  const c3 = c1 + 1;
+  return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+};
+
+/** Runs one-shot fn(progress) callbacks over time; used for pop-ins, drops, fades. */
+export class Tweens {
+  constructor() {
+    this.items = [];
+  }
+
+  add(fn, duration, { onComplete, delay = 0 } = {}) {
+    this.items.push({ fn, duration, t: -delay, onComplete });
+  }
+
+  update(dt) {
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      const item = this.items[i];
+      item.t += dt;
+      const p = clamp(item.t / item.duration, 0, 1);
+      item.fn(p);
+      if (p >= 1) {
+        this.items.splice(i, 1);
+        item.onComplete?.();
+      }
+    }
+  }
+}
+
 export function createStarfield({ count = 1600, radius = 400 } = {}) {
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);

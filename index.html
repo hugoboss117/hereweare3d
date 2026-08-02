@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Here We Are &mdash; an interactive notebook</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
@@ -18,9 +18,20 @@
 
       <button id="action-btn"></button>
 
+      <div id="time-controls">
+        <label>Time of day<input id="time-slider" type="range" min="0" max="1" step="0.01" value="0.5" /></label>
+        <label>Season<input id="season-slider" type="range" min="0" max="1" step="0.01" value="0" /></label>
+      </div>
+
       <nav id="chapter-nav">
         <button data-chapter="space">Space</button>
+        <button data-chapter="land">Land</button>
+        <button data-chapter="people">People</button>
+        <button data-chapter="time">Time</button>
+        <button data-chapter="sky">Sky</button>
         <button data-chapter="ocean">Ocean</button>
+        <button data-chapter="nature">Nature</button>
+        <button data-chapter="kindness">Kindness</button>
       </nav>
 
       <div id="loading">
