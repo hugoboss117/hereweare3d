@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Here We Are &mdash; an interactive notebook</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene"></canvas>
+
+      <div id="hud">
+        <div id="chapter-label"></div>
+        <div id="prompt"></div>
+      </div>
+
+      <button id="action-btn"></button>
+
+      <nav id="chapter-nav">
+        <button data-chapter="space">Space</button>
+        <button data-chapter="ocean">Ocean</button>
+      </nav>
+
+      <div id="loading">
+        <p>opening the book&hellip;</p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
