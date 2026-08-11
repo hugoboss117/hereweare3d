@@ -418,4 +418,15 @@
   });
   window.getActiveVideoElement = engine.getActiveVideoElement;
   engine.loadTrack(window.SHOW_DATA);
+  var startOverlay = document.getElementById("startOverlay");
+  setTimeout(() => {
+    if (engine.getActiveVideoElement().paused) {
+      startOverlay.style.display = "flex";
+    }
+  }, 500);
+  startOverlay.addEventListener("click", () => {
+    startOverlay.style.display = "none";
+    engine.getActiveVideoElement().play().catch(() => {
+    });
+  });
 })();
