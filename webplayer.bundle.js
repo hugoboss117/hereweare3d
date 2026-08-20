@@ -424,9 +424,21 @@
       startOverlay.style.display = "flex";
     }
   }, 500);
+  function requestFullscreenCompat(el) {
+    try {
+      const request = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+      if (request) {
+        const result = request.call(el);
+        if (result && result.catch) result.catch(() => {
+        });
+      }
+    } catch (err) {
+    }
+  }
   startOverlay.addEventListener("click", () => {
     startOverlay.style.display = "none";
     engine.getActiveVideoElement().play().catch(() => {
     });
+    requestFullscreenCompat(document.documentElement);
   });
 })();
